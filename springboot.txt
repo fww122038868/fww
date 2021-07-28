@@ -1,0 +1,16 @@
+1.ConditionalOnClass ：
+用于指定在Classpath下拥有某些Class时才生效
+
+ConditionalOnMissingClass ：用于指定在Classpath下不存在某些Class时才生效
+s
+ConditionalOnBean ：用于指定在bean容器中存在某些bean时生效
+2.指定在xxxConfigurarion中,满足对应条件加载对应配置类 自动配置类中可以定义相应的bean,进行注入管理
+3.@EnableConfigurationProperties(xxxProperties.class)指定的配置类会自动注册为Spring bean容器中的一个bean，然后可以在配置类中自动注入对应的属性类。
+
+
+通常自定义的Starter会需要依靠外部配置的属性进行一些自动配置。
+此时可以使用@ConfigurationProperties标注在用来接收属性的Class上(xxxProperties)，它可以指定一个前缀，
+然后将在application.properties(这些属性值我们可以指定,不指定有相应的默认值,会配置类获取到注入到bean)-->  中寻找指定前缀和字段名称组合起来的属性进行绑定，
+然后配置类定义的bean会从指定的属性配置类中,获取到相应的属性值注入给bean的属性中,然后进行管理，
+
+
